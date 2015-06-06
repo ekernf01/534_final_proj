@@ -45,7 +45,7 @@ int main()
     printf("\n\n");
     
     //print the tree in Graphviz format
-    printTree(mytree,OutputFile);
+    //printTree(mytree,OutputFile);
 
     //delete the tree
     DeleteTree(mytree);

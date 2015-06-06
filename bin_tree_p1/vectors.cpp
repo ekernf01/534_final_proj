@@ -37,6 +37,31 @@ void printvector(double* v,int n)
 	return;
 }
 
+//prints the elements of a vector of length n to the file "filename".
+void fprintvector(double* v,int n, char* filename)
+{
+	FILE* stream = fopen(filename,"r");
+
+   if(NULL==stream)
+   {
+		printf("Cannot open file [%s]\n",filename);
+   }
+	int i;
+	
+	for(i=0;i<n;i++)
+	{
+		fprintf(stream, "element [%d] = %.3lf\n",i+1,v[i]);
+	}
+	
+	fclose(stream);
+	return;
+}
+
+
+
+
+
+
 //frees the memory of this vector
 void freevector(double* v)
 {
