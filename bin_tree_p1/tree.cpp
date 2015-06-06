@@ -2,6 +2,45 @@
 #include "tree.h"
 #endif
 
+double* remove_lowest(LPNode Root)
+{
+    double lowest = 0;
+    if(Root==NULL)
+    {
+        cout << "remove_lowest given empty tree. Returning 0." << endl;
+        return 0;
+    }
+    //If you get a leaf, harvest, delete, return.
+    else if (Root->Left==NULL && Root->Right==NULL)
+    {
+        lowest = Root->key;
+        delete Root;
+        return lowest;
+    }
+    //If the left subtree is empty, but the right one isn't, you're at the lowest value, but
+    //  you have a mess to clean up. Need to replace the whole subtree with the right subtree.
+    else if  (Root->Left==NULL && Root->Right!=NULL)
+    {
+        lowest = Root->key;
+        LPNode tempRight = Root -> Right;
+        delete Root;//delete root of original subtree
+        Root = tempRight; //replace with root of right subtree
+        return lowest;
+    }
+    //If the left subtree is non-empty, pass the task down to the next level.
+    else if  (Root->Left!=NULL)
+    {
+        lowest = remove_lowest(Root->Left)
+        return lowest;
+    }
+    else
+    {
+        cout << "error: remove_lowest should never reach this block."
+    }
+
+}
+
+
 //this function creates a new node
 //with a given key
 LPNode MakeNewNode(double key)
