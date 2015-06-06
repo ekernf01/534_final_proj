@@ -5,7 +5,7 @@
 #include "vectors.h"
 #include "tree.h"
 
-int main()
+int main();
 {
     int i;
     int n = 8;
