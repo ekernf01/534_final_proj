@@ -44,7 +44,7 @@ int main(){
     
     printf("Vector sorted in increasing order\n");
     printvector(vectorIncreasing,n);
-    fprintvector(vectorIncreasing,n);
+    fprintvector(vectorIncreasing,n, OutputFile);
     printf("\n\n");
     
     //print the tree in Graphviz format
