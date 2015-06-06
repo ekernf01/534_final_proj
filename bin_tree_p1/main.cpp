@@ -4,9 +4,11 @@
 
 #include "vectors.h"
 #include "tree.h"
+#include <stdio.h>
+#include <stdlib.h>
+using namespace std;
 
-int main();
-{
+int main(){
     int i;
     int n = 8;
     
@@ -53,7 +55,7 @@ int main();
     
     //free the memory
     freevector(vector);
-    freevector(vectorIncreasing);  
+    freevector(vectorIncreasing);
 
     return(1);
 }
