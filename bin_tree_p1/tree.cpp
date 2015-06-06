@@ -26,7 +26,7 @@ double remove_lowest(LPNode Root)
         lowest = Root->key;
         LPNode tempRight = Root -> Right;
         delete Root;//delete root of original subtree
-        Root = tempRight; //replace with root of right subtree
+        Root = tempRight; //replace with right subtree
         return lowest;
     }
     //If the left subtree is non-empty, pass the task down to the next level.
