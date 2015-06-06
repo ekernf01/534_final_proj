@@ -1,6 +1,7 @@
 #ifndef _BIN_TREE
 #include "tree.h"
 #endif
+using namespace std;
 
 double remove_lowest(LPNode Root)
 {

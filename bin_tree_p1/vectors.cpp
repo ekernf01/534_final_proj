@@ -1,4 +1,5 @@
 #include "vectors.h"
+using namespace std;
 
 //dynamically allocates a vector of double of length n
 double* allocvector(int n)
