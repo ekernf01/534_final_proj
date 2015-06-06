@@ -11,6 +11,7 @@
 #include <string.h>
 #include <float.h>
 #include <iomanip>
+#include <iostream>
 #include <time.h>
 
 typedef struct myNode* LPNode;
