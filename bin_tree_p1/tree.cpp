@@ -16,6 +16,7 @@ double remove_lowest(LPNode Root)
     {
         lowest = Root->key;
         delete Root;
+        Root = NULL;
         return lowest;
     }
     //If the left subtree is empty, but the right one isn't, you're at the lowest value, but
