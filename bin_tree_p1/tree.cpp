@@ -31,10 +31,10 @@ double remove_lowest(LPNode Root)
     //If the left subtree is non-empty, pass the task down to the next level.
     else if  (Root->Left!=NULL)
     {
-        lowest = remove_lowest(Root->Left)
+        lowest = remove_lowest(Root->Left);
         return lowest;
     }
-    cout << "error: remove_lowest should never reach this block."
+    cout << "error: remove_lowest should never reach this block." << endl;
     return lowest;
 }
 
