@@ -36,7 +36,7 @@ int main(){
     //sort in increasing order by traversing the tree in inorder
     double* vectorIncreasing = allocvector(n);
         
-    //remove all the elements in order, disassembling the tree in the process
+    //remove all the elements in order, deleting the tree in the process
     for(i=1;i<n;i++)
     {
         vectorIncreasing[i] = remove_lowest(mytree);
@@ -47,13 +47,7 @@ int main(){
     fprintvector(vectorIncreasing,n, OutputFile);
     printf("\n\n");
     
-    //print the tree in Graphviz format
-    //printTree(mytree,OutputFile);
-
-    //delete the tree
-    DeleteTree(mytree);
-    
-    //free the memory
+    //free memory
     freevector(vector);
     freevector(vectorIncreasing);
 
