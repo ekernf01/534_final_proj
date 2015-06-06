@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+using namespace std;
 
 double* allocvector(int n);
 void printvector(double* v,int n);

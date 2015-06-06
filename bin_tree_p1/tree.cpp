@@ -2,7 +2,7 @@
 #include "tree.h"
 #endif
 
-double* remove_lowest(LPNode Root)
+double remove_lowest(LPNode Root)
 {
     double lowest = 0;
     if(Root==NULL)
@@ -33,11 +33,8 @@ double* remove_lowest(LPNode Root)
         lowest = remove_lowest(Root->Left)
         return lowest;
     }
-    else
-    {
-        cout << "error: remove_lowest should never reach this block."
-    }
-
+    cout << "error: remove_lowest should never reach this block."
+    return lowest;
 }
 
 
