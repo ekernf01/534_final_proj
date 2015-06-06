@@ -12,7 +12,7 @@
 #include <float.h>
 #include <iomanip>
 #include <time.h>
-
+using namespace std;
 typedef struct myNode* LPNode;
 typedef struct myNode Node;
 
