@@ -1,0 +1,410 @@
+Original vector
+element [1] = 1.000
+element [2] = 2.000
+element [3] = 0.000
+element [4] = 0.000
+element [5] = 0.000
+element [6] = 0.000
+element [7] = 0.000
+element [8] = 0.000
+element [9] = 0.000
+element [10] = 0.000
+element [11] = -2.000
+element [12] = 1.000
+element [13] = 2.000
+element [14] = 0.000
+element [15] = 0.000
+element [16] = 0.000
+element [17] = 0.000
+element [18] = 0.000
+element [19] = 0.000
+element [20] = 0.000
+element [21] = 0.000
+element [22] = -2.000
+element [23] = 1.000
+element [24] = 2.000
+element [25] = 0.000
+element [26] = 0.000
+element [27] = 0.000
+element [28] = 0.000
+element [29] = 0.000
+element [30] = 0.000
+element [31] = 0.000
+element [32] = 0.000
+element [33] = -2.000
+element [34] = 1.000
+element [35] = 2.000
+element [36] = 0.000
+element [37] = 0.000
+element [38] = 0.000
+element [39] = 0.000
+element [40] = 0.000
+element [41] = 0.000
+element [42] = 0.000
+element [43] = 0.000
+element [44] = -2.000
+element [45] = 1.000
+element [46] = 2.000
+element [47] = 0.000
+element [48] = 0.000
+element [49] = 0.000
+element [50] = 0.000
+element [51] = 0.000
+element [52] = 0.000
+element [53] = 0.000
+element [54] = 0.000
+element [55] = -2.000
+element [56] = 1.000
+element [57] = 2.000
+element [58] = 0.000
+element [59] = 0.000
+element [60] = 0.000
+element [61] = 0.000
+element [62] = 0.000
+element [63] = 0.000
+element [64] = 0.000
+element [65] = 0.000
+element [66] = -2.000
+element [67] = 1.000
+element [68] = 2.000
+element [69] = 0.000
+element [70] = 0.000
+element [71] = 0.000
+element [72] = 0.000
+element [73] = 0.000
+element [74] = 0.000
+element [75] = 0.000
+element [76] = 0.000
+element [77] = -2.000
+element [78] = 1.000
+element [79] = 2.000
+element [80] = 0.000
+element [81] = 0.000
+element [82] = 0.000
+element [83] = 0.000
+element [84] = 0.000
+element [85] = 0.000
+element [86] = 0.000
+element [87] = 0.000
+element [88] = -2.000
+element [89] = 1.000
+element [90] = 2.000
+element [91] = 0.000
+element [92] = 0.000
+element [93] = 0.000
+element [94] = 0.000
+element [95] = 0.000
+element [96] = 0.000
+element [97] = 0.000
+element [98] = 0.000
+element [99] = -2.000
+element [100] = 1.000
+
+
+Vector sorted in increasing order
+element [1] = -2.000
+element [2] = -2.000
+element [3] = -2.000
+element [4] = -2.000
+element [5] = -2.000
+element [6] = -2.000
+element [7] = -2.000
+element [8] = -2.000
+element [9] = -2.000
+element [10] = 0.000
+element [11] = 0.000
+element [12] = 0.000
+element [13] = 0.000
+element [14] = 0.000
+element [15] = 0.000
+element [16] = 0.000
+element [17] = 0.000
+element [18] = 0.000
+element [19] = 0.000
+element [20] = 0.000
+element [21] = 0.000
+element [22] = 0.000
+element [23] = 0.000
+element [24] = 0.000
+element [25] = 0.000
+element [26] = 0.000
+element [27] = 0.000
+element [28] = 0.000
+element [29] = 0.000
+element [30] = 0.000
+element [31] = 0.000
+element [32] = 0.000
+element [33] = 0.000
+element [34] = 0.000
+element [35] = 0.000
+element [36] = 0.000
+element [37] = 0.000
+element [38] = 0.000
+element [39] = 0.000
+element [40] = 0.000
+element [41] = 0.000
+element [42] = 0.000
+element [43] = 0.000
+element [44] = 0.000
+element [45] = 0.000
+element [46] = 0.000
+element [47] = 0.000
+element [48] = 0.000
+element [49] = 0.000
+element [50] = 0.000
+element [51] = 0.000
+element [52] = 0.000
+element [53] = 0.000
+element [54] = 0.000
+element [55] = 0.000
+element [56] = 0.000
+element [57] = 0.000
+element [58] = 0.000
+element [59] = 0.000
+element [60] = 0.000
+element [61] = 0.000
+element [62] = 0.000
+element [63] = 0.000
+element [64] = 0.000
+element [65] = 0.000
+element [66] = 0.000
+element [67] = 0.000
+element [68] = 0.000
+element [69] = 0.000
+element [70] = 0.000
+element [71] = 0.000
+element [72] = 0.000
+element [73] = 0.000
+element [74] = 0.000
+element [75] = 0.000
+element [76] = 0.000
+element [77] = 0.000
+element [78] = 0.000
+element [79] = 0.000
+element [80] = 0.000
+element [81] = 0.000
+element [82] = 1.000
+element [83] = 1.000
+element [84] = 1.000
+element [85] = 1.000
+element [86] = 1.000
+element [87] = 1.000
+element [88] = 1.000
+element [89] = 1.000
+element [90] = 1.000
+element [91] = 1.000
+element [92] = 2.000
+element [93] = 2.000
+element [94] = 2.000
+element [95] = 2.000
+element [96] = 2.000
+element [97] = 2.000
+element [98] = 2.000
+element [99] = 2.000
+element [100] = 2.000
+
+
+Vector sorted in decreasing order
+element [1] = 2.000
+element [2] = 2.000
+element [3] = 2.000
+element [4] = 2.000
+element [5] = 2.000
+element [6] = 2.000
+element [7] = 2.000
+element [8] = 2.000
+element [9] = 2.000
+element [10] = 1.000
+element [11] = 1.000
+element [12] = 1.000
+element [13] = 1.000
+element [14] = 1.000
+element [15] = 1.000
+element [16] = 1.000
+element [17] = 1.000
+element [18] = 1.000
+element [19] = 1.000
+element [20] = 0.000
+element [21] = 0.000
+element [22] = 0.000
+element [23] = 0.000
+element [24] = 0.000
+element [25] = 0.000
+element [26] = 0.000
+element [27] = 0.000
+element [28] = 0.000
+element [29] = 0.000
+element [30] = 0.000
+element [31] = 0.000
+element [32] = 0.000
+element [33] = 0.000
+element [34] = 0.000
+element [35] = 0.000
+element [36] = 0.000
+element [37] = 0.000
+element [38] = 0.000
+element [39] = 0.000
+element [40] = 0.000
+element [41] = 0.000
+element [42] = 0.000
+element [43] = 0.000
+element [44] = 0.000
+element [45] = 0.000
+element [46] = 0.000
+element [47] = 0.000
+element [48] = 0.000
+element [49] = 0.000
+element [50] = 0.000
+element [51] = 0.000
+element [52] = 0.000
+element [53] = 0.000
+element [54] = 0.000
+element [55] = 0.000
+element [56] = 0.000
+element [57] = 0.000
+element [58] = 0.000
+element [59] = 0.000
+element [60] = 0.000
+element [61] = 0.000
+element [62] = 0.000
+element [63] = 0.000
+element [64] = 0.000
+element [65] = 0.000
+element [66] = 0.000
+element [67] = 0.000
+element [68] = 0.000
+element [69] = 0.000
+element [70] = 0.000
+element [71] = 0.000
+element [72] = 0.000
+element [73] = 0.000
+element [74] = 0.000
+element [75] = 0.000
+element [76] = 0.000
+element [77] = 0.000
+element [78] = 0.000
+element [79] = 0.000
+element [80] = 0.000
+element [81] = 0.000
+element [82] = 0.000
+element [83] = 0.000
+element [84] = 0.000
+element [85] = 0.000
+element [86] = 0.000
+element [87] = 0.000
+element [88] = 0.000
+element [89] = 0.000
+element [90] = 0.000
+element [91] = 0.000
+element [92] = -2.000
+element [93] = -2.000
+element [94] = -2.000
+element [95] = -2.000
+element [96] = -2.000
+element [97] = -2.000
+element [98] = -2.000
+element [99] = -2.000
+element [100] = -2.000
+
+
+Elements of vector in increasing order
+10	-2.000
+21	-2.000
+32	-2.000
+43	-2.000
+54	-2.000
+65	-2.000
+76	-2.000
+87	-2.000
+98	-2.000
+2	0.000
+3	0.000
+4	0.000
+5	0.000
+6	0.000
+7	0.000
+8	0.000
+9	0.000
+13	0.000
+14	0.000
+15	0.000
+16	0.000
+17	0.000
+18	0.000
+19	0.000
+20	0.000
+24	0.000
+25	0.000
+26	0.000
+27	0.000
+28	0.000
+29	0.000
+30	0.000
+31	0.000
+35	0.000
+36	0.000
+37	0.000
+38	0.000
+39	0.000
+40	0.000
+41	0.000
+42	0.000
+46	0.000
+47	0.000
+48	0.000
+49	0.000
+50	0.000
+51	0.000
+52	0.000
+53	0.000
+57	0.000
+58	0.000
+59	0.000
+60	0.000
+61	0.000
+62	0.000
+63	0.000
+64	0.000
+68	0.000
+69	0.000
+70	0.000
+71	0.000
+72	0.000
+73	0.000
+74	0.000
+75	0.000
+79	0.000
+80	0.000
+81	0.000
+82	0.000
+83	0.000
+84	0.000
+85	0.000
+86	0.000
+90	0.000
+91	0.000
+92	0.000
+93	0.000
+94	0.000
+95	0.000
+96	0.000
+97	0.000
+0	1.000
+11	1.000
+22	1.000
+33	1.000
+44	1.000
+55	1.000
+66	1.000
+77	1.000
+88	1.000
+99	1.000
+1	2.000
+12	2.000
+23	2.000
+34	2.000
+45	2.000
+56	2.000
+67	2.000
+78	2.000
+89	2.000
