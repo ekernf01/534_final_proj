@@ -30,6 +30,7 @@ int main(){
     //now add all the other elements of the vector
     for(i=1;i<n;i++)
     {
+        printf("i = %d \n", i);
         treeInsert(mytree,vector[i]);
     }
 
