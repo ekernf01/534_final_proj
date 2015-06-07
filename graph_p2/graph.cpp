@@ -22,7 +22,7 @@ void findConComp(int myvertex,int** graph,int nvertices)
    }
    in_cc[myvertex] = 1;
    
-   
+   int vwnabc = 0;
    cout << "The vertex " << myvertex << " (indexing from 0) has this connected component :" << endl;
    //For all vertices whose neighbors need to be checked
    for(int i=0; i<vfwyntctn_size;i++)
