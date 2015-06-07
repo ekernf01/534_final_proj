@@ -46,7 +46,7 @@ void findConComp(int myvertex,int** graph,int nvertices)
          }
       }
    }
-   cout << endl;
+   cout << endl ;
    return;
 }
 
