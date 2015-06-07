@@ -238,7 +238,7 @@ void slave(int slavename)
    char graphfile[] = "data.txt";
    int nvertices = -1;
    int** graph = readgraph(graphfile,nvertices);
-
+   int* workresults;
    int work[1]; 		               // the inputs from the master
    MPI_Status status;		           // for MPI communication
 
@@ -262,7 +262,7 @@ void slave(int slavename)
          case GETR2:
             // Get conn component
             printf("Slave %d has received vertex [%d]\n", slavename,work[0]);
-            int* workresults = findConComp(work[0], graph, nvertices);
+            workresults = findConComp(work[0], graph, nvertices);
 
             // Send the results
             MPI_Send(&workresults,
