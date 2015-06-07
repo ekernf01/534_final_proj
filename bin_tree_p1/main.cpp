@@ -40,7 +40,7 @@ int main(){
     for(i=1;i<n;i++)
     {
         double temp_lowest = 0;
-        mytree = remove_lowest(mytree, &temp_lowest);
+        mytree = remove_lowest(mytree, temp_lowest);
         vectorIncreasing[i] = temp_lowest;
     }
     
