@@ -10,8 +10,8 @@ void findConComp(int myvertex,int** graph,int nvertices)
    //And by the end of the loop, it will have a simpler meaning:
    // it will list the cc of myvertex.
    int* vfwyntctn = new int[nvertices];
-   vfwyntctn_size = 1;
-   vfwyntctn[0] = myvertex
+   int vfwyntctn_size = 1;
+   vfwyntctn[0] = myvertex;
    
    //in_cc is a vector whose [v] element will say whether v is in myvertex's connected component.
    bool* in_cc = new bool[nvertices];
@@ -30,7 +30,7 @@ void findConComp(int myvertex,int** graph,int nvertices)
       //"vwnabc" is "vertex whose neighbors are being checked"
       //It is a vertex already known to be in the CC of myvertex.
       vwnabc = vfwyntctn[i];
-      cout << vwnabc << ""
+      cout << vwnabc << "";
 
       //Check the potential neighbors.
       for(int maybe_neighbor=0; maybe_neighbor<nvertices; maybe_neighbor++)
