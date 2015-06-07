@@ -88,7 +88,7 @@ void master()
    // Loop through the vertices and compute the connected components in parallel
    jobsRunning = 1;
 
-   for(my_vertex=0; my_vertex<nvertices; my_vertex++)
+   for(int my_vertex=0; my_vertex<nvertices; my_vertex++)
    {
       // This will tell the slave which variable to work on
       work[0] = my_vertex;
@@ -139,7 +139,7 @@ void master()
    ///////////////////////////////////////////////////////////////
 
    // loop over all the slaves
-   for(rank=1; rank<jobsRunning; rank++)
+   for(int rank=1; rank<jobsRunning; rank++)
    {
       MPI_Recv(workresults[my_vertex],
                nvertices,
@@ -148,8 +148,6 @@ void master()
                MPI_ANY_TAG,
                MPI_COMM_WORLD,
                &status);
-
-       printf("Master has received the result of work request [%d]\n", (int) workresults[0]);
     }
 
    printf("Tell the slave to die\n");
@@ -239,7 +237,7 @@ void slave(int slavename)
          case GETR2:
             // Get conn component
             printf("Slave %d has received vertex [%d]\n", slavename,work[0]);
-            workresults = findConComp(work[0],int** graph,int nvertices);
+            workresults = findConComp(work[0], graph, nvertices);
 
             // Send the results
             MPI_Send(&workresults,
