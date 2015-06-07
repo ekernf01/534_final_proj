@@ -30,7 +30,6 @@ int main(){
     //now add all the other elements of the vector
     for(i=1;i<n;i++)
     {
-        printf("i = %d \n", i);
         treeInsert(mytree,vector[i]);
     }
 
@@ -38,8 +37,9 @@ int main(){
     double* vectorIncreasing = allocvector(n);
         
     //remove all the elements in order, deleting the tree in the process
-    for(i=1;i<n;i++)
+    for(i=0;i<n;i++)
     {
+        printf("i = %d \n", i);
         double temp_lowest = 0;
         mytree = remove_lowest(mytree, temp_lowest);
         vectorIncreasing[i] = temp_lowest;
