@@ -129,6 +129,7 @@ void master()
          //copy the results
          int v = workresults[1];
          all_results_lens[v] = workresults[0];
+         all_results[v] = new int[all_results_lens[v]];
          for(int i=0; i<all_results_lens[v]; i++)
          {
             all_results[v][i] = workresults[i+2]; 
