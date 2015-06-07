@@ -194,7 +194,7 @@ void master()
 
    printf("got to the end of Master code\n");
    
-   printf("About to print final results. \n", v);
+   printf("About to print final results. \n");
 
    //initialize boolean list to 0
    bool* seen_vertex_already = new bool[nvertices];
