@@ -262,7 +262,7 @@ void slave(int slavename)
          case GETR2:
             // Get conn component
             printf("Slave %d has received vertex [%d]\n", slavename,work[0]);
-            workresults = findConComp(work[0], graph, nvertices);
+            int* workresults = findConComp(work[0], graph, nvertices);
 
             // Send the results
             MPI_Send(&workresults,
