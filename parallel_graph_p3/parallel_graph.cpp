@@ -129,7 +129,7 @@ void master()
          //copy the results
          int v = workresults[1];
          all_results_lens[v] = workresults[0];
-         for(int i=0; i<; i++)
+         for(int i=0; i<all_results_lens[v]; i++)
          {
             all_results[v][i] = workresults[i+2]; 
          }
@@ -167,7 +167,7 @@ void master()
       //copy the results
       int v = workresults[1];
       all_results_lens[v] = workresults[0];
-      for(int i=0; i<; i++)
+      for(int i=0; i<all_results_lens[v]; i++)
       {
          all_results[v][i] = workresults[i+2]; 
       }
@@ -216,7 +216,7 @@ void master()
    //free memory
    delete seen_vertex_already;
    delete workresults;
-   delete work;
+ //  delete work;
    freegraph(graph,nvertices);
    for(int v = 0; v<nvertices; v++)
    {
