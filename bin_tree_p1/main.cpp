@@ -39,7 +39,6 @@ int main(){
     //remove all the elements in order, deleting the tree in the process
     for(i=0;i<n;i++)
     {
-        printf("i = %d \n", i);
         double temp_lowest = 0;
         mytree = remove_lowest(mytree, temp_lowest);
         vectorIncreasing[i] = temp_lowest;
