@@ -117,7 +117,7 @@ void master()
       }
       else // all the processors are in use! Wait, receive, send.
       {
-         MPI_Recv(&workresults,           // where to store the results
+         MPI_Recv(workresults,           // where to store the results
                   nvertices,		     //buffer length
                   MPI_DOUBLE,	         // the type of the vector
                   MPI_ANY_SOURCE,
@@ -157,7 +157,7 @@ void master()
    // loop over all the slaves and collect remaining jobs
    for(int rank=1; rank<jobsRunning; rank++)
    {
-      MPI_Recv(&workresults,
+      MPI_Recv(workresults,
                nvertices,
                MPI_DOUBLE,
                MPI_ANY_SOURCE,	// whoever is ready to report back
@@ -265,7 +265,7 @@ void slave(int slavename)
             workresults = findConComp(work[0], graph, nvertices);
 
             // Send the results
-            MPI_Send(&workresults,
+            MPI_Send(workresults,
                      nvertices,
                      MPI_DOUBLE,
                      0,		// send it to the master
