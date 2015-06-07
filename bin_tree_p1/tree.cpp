@@ -3,21 +3,20 @@
 #endif
 using namespace std;
 
-double remove_lowest(LPNode Root)
+LPNode remove_lowest(LPNode Root, int& lowest)
 {
-    double lowest = 0;
+    lowest = 0;
     if(Root==NULL)
     {
-        cout << "remove_lowest given empty tree. Returning 0." << endl;
-        return 0;
+        cout << "remove_lowest given empty tree. Returning NULL." << endl;
+        return NULL;
     }
     //If you get a leaf, harvest, delete, return.
     else if (Root->Left==NULL && Root->Right==NULL)
     {
         lowest = Root->key;
         delete Root;
-        Root = NULL;
-        return lowest;
+        return NULL;
     }
     //If the left subtree is empty, but the right one isn't, you're at the lowest value, but
     //  you have a mess to clean up. Need to replace the whole subtree with the right subtree.
@@ -25,18 +24,16 @@ double remove_lowest(LPNode Root)
     {
         lowest = Root->key;
         LPNode tempRight = Root -> Right;
-        delete Root;//delete root of original subtree
-        Root = tempRight; //replace with right subtree
-        return lowest;
+        delete Root; //delete root of original subtree
+        return tempRight; //replace with right subtree
     }
     //If the left subtree is non-empty, pass the task down to the next level.
     else if  (Root->Left!=NULL)
     {
-        lowest = remove_lowest(Root->Left);
-        return lowest;
+        return = remove_lowest(Root->Left, &lowest);
     }
     cout << "error: remove_lowest should never reach this block." << endl;
-    return lowest;
+    return NULL;
 }
 
 
