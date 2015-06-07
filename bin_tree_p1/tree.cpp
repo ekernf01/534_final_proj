@@ -3,7 +3,7 @@
 #endif
 using namespace std;
 
-LPNode remove_lowest(LPNode Root, int& lowest)
+LPNode remove_lowest(LPNode Root, double& lowest)
 {
     lowest = 0;
     if(Root==NULL)
