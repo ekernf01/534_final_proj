@@ -33,7 +33,7 @@ LPNode remove_lowest(LPNode Root, double& lowest)
         cout << "Going down a level." << endl;
         LPNode tempRoot = remove_lowest(Root->Left, lowest);
         cout << "Returning." << endl;
-        return tempRoot
+        return tempRoot;
     }
     cout << "error: remove_lowest should never reach this block." << endl;
     return NULL;
