@@ -20,7 +20,7 @@ LPNode remove_lowest(LPNode Root, double& lowest)
     }
     //If the left subtree is empty, but the right one isn't, you're at the lowest value, but
     //  you have a mess to clean up. Need to replace the whole subtree with the right subtree.
-    else if  (NULL==Root->Left && Null!=Root->Right)
+    else if  (NULL==Root->Left && NULL!=Root->Right)
     {
         lowest = Root->key;
         LPNode tempRight = Root -> Right;
