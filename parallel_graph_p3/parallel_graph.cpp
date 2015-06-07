@@ -77,8 +77,15 @@ void master()
    int ntasks;		                        // the total number of slaves
    int jobsRunning;	                        // how many slaves we have working
    int work[1];		                        // information to send to the slaves
-   int** workresults = new int*[nvertices]; // info received from the slaves
    MPI_Status status;	                    // MPI information
+
+   //workresults[0] is the length of the cc and workresults[1] is the input vertex
+   //The rest is the actual cc
+   int* workresults = new int[nvertices+1]; 
+   //all_results[v] stores the cc of vertex v
+   int** all_results = new int*[nvertices]; 
+   //all_results_lens[v] stores the size of the cc of vertex v
+   int* all_results_lens = new int[nvertices];
 
    // Find out how many slaves there are
    MPI_Comm_size(MPI_COMM_WORLD, &ntasks);
@@ -111,14 +118,22 @@ void master()
       }
       else // all the processors are in use! Wait, receive, send.
       {
-         MPI_Recv(workresults[v],// where to store the results
+         MPI_Recv(workresults,        // where to store the results
                   nvertices,		     // the size of the vector
                   MPI_DOUBLE,	         // the type of the vector
                   MPI_ANY_SOURCE,
                   MPI_ANY_TAG, 
                   MPI_COMM_WORLD,
                   &status);              // lets us know which processor returned these results
- 
+         
+         //copy the results
+         int v = workresults[1];
+         all_results_lens[v] = workresults[0];
+         for(int i=0; i<; i++)
+         {
+            all_results[v][i] = workresults[i+2]; 
+         }
+         
          printf("Master sends out work request [%d] to slave [%d]\n",
                 work[0],status.MPI_SOURCE);
 
@@ -138,19 +153,25 @@ void master()
    // collected. Collect those results now!
    ///////////////////////////////////////////////////////////////
 
-   // loop over all the slaves
+   // loop over all the slaves and collect remaining jobs
    for(int rank=1; rank<jobsRunning; rank++)
    {
-      MPI_Recv(workresults[my_vertex],
+      MPI_Recv(workresults,
                nvertices,
                MPI_DOUBLE,
                MPI_ANY_SOURCE,	// whoever is ready to report back
                MPI_ANY_TAG,
                MPI_COMM_WORLD,
                &status);
+         
+      //copy the results
+      int v = workresults[1];
+      all_results_lens[v] = workresults[0];
+      for(int i=0; i<; i++)
+      {
+         all_results[v][i] = workresults[i+2]; 
+      }
     }
-
-   printf("Tell the slave to die\n");
 
    // Shut down the slave processes
    for(int rank=1; rank<ntasks; rank++)
@@ -177,16 +198,16 @@ void master()
    for(int v = 0; v<nvertices; v++)
    {
       printf("Component of vertex [%d] contains ", v);
-      for(int i=1; i<=workresults[v][0]; i++)
+      for(int i=0; i<all_results_lens[v]; i++)
       {
-         if(seen_vertex_already[workresults[v][i]])
+         if(seen_vertex_already[all_results[v][i]])
          {
             printf("duplicates.");
             break;
          }
          else
          {
-            printf(" [%d] ", (int) workresults[v][i]);
+            printf(" [%d] ", (int) all_results[v][i]);
          }
          printf("\n");
       }
@@ -199,8 +220,9 @@ void master()
    freegraph(graph,nvertices);
    for(int v = 0; v<nvertices; v++)
    {
-      delete workresults[v];
+      delete all_results[v];
    }
+   delete all_results;
    
    // return to the main function
    return;
@@ -214,7 +236,7 @@ void slave(int slavename)
    int** graph = readgraph(graphfile,nvertices);
 
    int work[1]; 		               // the inputs from the master
-   int** workresults;                  // the outputs for the master
+   int* workresults;                  // the outputs for the master
    MPI_Status status;		           // for MPI communication
 
    // the slave listens for instructions...
@@ -237,7 +259,7 @@ void slave(int slavename)
          case GETR2:
             // Get conn component
             printf("Slave %d has received vertex [%d]\n", slavename,work[0]);
-            workresults[work[0]] = findConComp(work[0], graph, nvertices);
+            workresults = findConComp(work[0], graph, nvertices);
 
             // Send the results
             MPI_Send(&workresults,
@@ -266,6 +288,8 @@ void slave(int slavename)
    return;
 }
 
+//workresults[0] is the length of the cc and workresults[1] is the input vertex
+//The rest is the actual cc
 int* findConComp(int myvertex,int** graph,int nvertices)
 {
    //vfwyntctn means "vertices for which you need to check the neighbors."
@@ -309,15 +333,16 @@ int* findConComp(int myvertex,int** graph,int nvertices)
       }
    }
    cout << endl ;
-   int* output = new int[vfwyntctn_size+1];
-   output[0] = vfwyntctn_size;
+   int* workresults = new int[vfwyntctn_size+1];
+   workresults[0] = vfwyntctn_size;
+   workresults[1] = myvertex;
    for(int i=0; i<vfwyntctn_size; i++)
    {
-      output[i+1] = vfwyntctn[i];
+      workresults[i+2] = vfwyntctn[i];
    }
    delete[] vfwyntctn;
    delete[] in_cc;
-   return output;
+   return workresults;
 }
 
 
