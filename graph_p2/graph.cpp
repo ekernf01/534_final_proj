@@ -46,8 +46,8 @@ void findConComp(int myvertex,int** graph,int nvertices)
       }
    }
    cout << endl ;
-   delete vfwyntctn;
-   delete in_cc;
+   delete[] vfwyntctn;
+   delete[] in_cc;
    return;
 }
 
