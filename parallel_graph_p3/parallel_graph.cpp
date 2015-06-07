@@ -180,6 +180,7 @@ void master()
 
     }
 
+   printf("Shutting down slaves.\n");
    // Shut down the slave processes
    for(int rank=1; rank<ntasks; rank++)
    {
