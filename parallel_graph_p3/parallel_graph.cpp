@@ -127,14 +127,15 @@ void master()
          
          //copy the results
          int v = workresults[1];
-         printf("Copying results on vertex [%d]", v);
+         printf("Copying results on vertex [%d] \n", v);
          all_results_lens[v] = workresults[0];
          all_results[v] = new int[all_results_lens[v]];
          for(int i=0; i<all_results_lens[v]; i++)
          {
             all_results[v][i] = workresults[i+2]; 
          }
-         
+         printf("Done copying results on vertex [%d] \n", v);
+
          printf("Master sends out work request [%d] to slave [%d]\n",
                 work[0],status.MPI_SOURCE);
 
@@ -167,7 +168,7 @@ void master()
       
       //copy the results
       int v = workresults[1];
-      printf("Copying results on vertex [%d]", v);
+      printf("Copying results on vertex [%d] \n", v);
 
       all_results[v] = new int[all_results_lens[v]];
       all_results_lens[v] = workresults[0];
@@ -175,6 +176,8 @@ void master()
       {
          all_results[v][i] = workresults[i+2]; 
       }
+      printf("Done copying results on vertex [%d] \n", v);
+
     }
 
    // Shut down the slave processes
@@ -191,6 +194,8 @@ void master()
 
    printf("got to the end of Master code\n");
    
+   printf("About to print final results. \n", v);
+
    //initialize boolean list to 0
    bool* seen_vertex_already = new bool[nvertices];
    for(int v = 0; v<nvertices; v++)
