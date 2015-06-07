@@ -128,6 +128,7 @@ void master()
          
          //copy the results
          int v = workresults[1];
+         printf("Copying results on vertex [%d]", v);
          all_results_lens[v] = workresults[0];
          all_results[v] = new int[all_results_lens[v]];
          for(int i=0; i<all_results_lens[v]; i++)
@@ -164,9 +165,11 @@ void master()
                MPI_ANY_TAG,
                MPI_COMM_WORLD,
                &status);
-      printf("Copying results on vertex [%d]", v);
+      
       //copy the results
       int v = workresults[1];
+      printf("Copying results on vertex [%d]", v);
+
       all_results[v] = new int[all_results_lens[v]];
       all_results_lens[v] = workresults[0];
       for(int i=0; i<all_results_lens[v]; i++)
