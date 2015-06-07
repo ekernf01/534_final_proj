@@ -1,6 +1,5 @@
 #include "graph.h"
 #include "iostream"
-#include <queue>
 using namespace std;
 //Eric's contribution. Prints vertices in the connected component of myvertex.
 void findConComp(int myvertex,int** graph,int nvertices)
@@ -47,6 +46,7 @@ void findConComp(int myvertex,int** graph,int nvertices)
       }
    }
    cout << endl ;
+   delete vfwyntctn
    return;
 }
 
