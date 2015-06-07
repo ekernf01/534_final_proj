@@ -153,7 +153,7 @@ void master()
    printf("Tell the slave to die\n");
 
    // Shut down the slave processes
-   for(rank=1; rank<ntasks; rank++)
+   for(int rank=1; rank<ntasks; rank++)
    {
       printf("Master is killing slave [%d]\n",rank);
       MPI_Send(0,
@@ -237,7 +237,7 @@ void slave(int slavename)
          case GETR2:
             // Get conn component
             printf("Slave %d has received vertex [%d]\n", slavename,work[0]);
-            workresults = findConComp(work[0], graph, nvertices);
+            workresults[work[0]] = findConComp(work[0], graph, nvertices);
 
             // Send the results
             MPI_Send(&workresults,
