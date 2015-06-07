@@ -23,14 +23,14 @@ void findConComp(int myvertex,int** graph,int nvertices)
    in_cc[myvertex] = 1;
    
    int vwnabc = 0;
-   cout << "The vertex " << myvertex << " (indexing from 0) has this connected component :" << endl;
+   cout << endl << "The vertex " << myvertex << " (indexing from 0) has this connected component :" << endl;
    //For all vertices whose neighbors need to be checked
    for(int i=0; i<vfwyntctn_size;i++)
    {
       //"vwnabc" is "vertex whose neighbors are being checked"
       //It is a vertex already known to be in the CC of myvertex.
       vwnabc = vfwyntctn[i];
-      cout << vwnabc << "";
+      cout << vwnabc << "  ";
 
       //Check the potential neighbors.
       for(int maybe_neighbor=0; maybe_neighbor<nvertices; maybe_neighbor++)
