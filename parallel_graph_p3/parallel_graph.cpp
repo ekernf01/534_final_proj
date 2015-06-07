@@ -24,7 +24,6 @@ using namespace std;
 static int myrank;
 
 // Function Declarations
-void NormStand();
 void master();
 void slave(int slavename);
 
@@ -33,8 +32,8 @@ int** allocgraph(int nvertices);
 void freegraph(int**& graph,int nvertices);
 int** readgraph(char* filename,int& nvertices);
 void printgraph(char* filename,int** graph,int nvertices);
-//This version is modified to return an array whose first element plus one
-//records the length of the array and whose later elements are vertices in the CC.
+
+//This version is modified to return an array with a couple extra items--list length and original vertex.
 int* findConComp(int myvertex,int** graph,int nvertices);
 
 int main(int argc, char* argv[])
@@ -118,8 +117,8 @@ void master()
       }
       else // all the processors are in use! Wait, receive, send.
       {
-         MPI_Recv(workresults,        // where to store the results
-                  nvertices,		     // the size of the vector
+         MPI_Recv(&workresults,           // where to store the results
+                  nvertices,		     //buffer length
                   MPI_DOUBLE,	         // the type of the vector
                   MPI_ANY_SOURCE,
                   MPI_ANY_TAG, 
@@ -158,7 +157,7 @@ void master()
    // loop over all the slaves and collect remaining jobs
    for(int rank=1; rank<jobsRunning; rank++)
    {
-      MPI_Recv(workresults,
+      MPI_Recv(&workresults,
                nvertices,
                MPI_DOUBLE,
                MPI_ANY_SOURCE,	// whoever is ready to report back
@@ -241,7 +240,6 @@ void slave(int slavename)
    int** graph = readgraph(graphfile,nvertices);
 
    int work[1]; 		               // the inputs from the master
-   int* workresults;                  // the outputs for the master
    MPI_Status status;		           // for MPI communication
 
    // the slave listens for instructions...
