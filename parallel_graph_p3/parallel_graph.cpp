@@ -80,7 +80,7 @@ void master()
 
    //workresults[0] is the length of the cc and workresults[1] is the input vertex
    //The rest is the actual cc
-   int* workresults = new int[nvertices+1]; 
+   int* workresults = new int[nvertices+2]; 
    //all_results[v] stores the cc of vertex v
    int** all_results = new int*[nvertices]; 
    //all_results_lens[v] stores the size of the cc of vertex v
