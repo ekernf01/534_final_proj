@@ -342,7 +342,7 @@ int* findConComp(int myvertex,int** graph,int nvertices)
       }
    }
    cout << endl ;
-   int* workresults = new int[vfwyntctn_size+1];
+   int* workresults = new int[vfwyntctn_size+2];
    workresults[0] = vfwyntctn_size;
    workresults[1] = myvertex;
    for(int i=0; i<vfwyntctn_size; i++)
