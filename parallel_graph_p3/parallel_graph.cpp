@@ -13,21 +13,15 @@
 #include <math.h>
 #include <mpi.h>
 #include <iomanip>
+#include "iostream"
 
 // For MPI communication
 #define GETR2	1
 #define DIETAG	0
+using namespace std;
 
 // Used to determine MASTER or SLAVE
 static int myrank;
-
-// Global variables
-int nobservations = 40;
-int nvariables = 1000;
-double* Y = NULL;
-double** X = NULL;
-
-double ssy = 0.0;	// used in R2 calculation
 
 // Function Declarations
 void NormStand();
@@ -39,6 +33,10 @@ int** allocgraph(int nvertices);
 void freegraph(int**& graph,int nvertices);
 int** readgraph(char* filename,int& nvertices);
 void printgraph(char* filename,int** graph,int nvertices);
+//This version is modified to return an array whose first element plus one
+//records the length of the array and whose later elements are vertices in the CC.
+int* findConComp(int myvertex,int** graph,int nvertices);
+
 int main(int argc, char* argv[])
 {
    ///////////////////////////
@@ -51,9 +49,6 @@ int main(int argc, char* argv[])
    /////////////////////////////////////
    MPI_Comm_rank(MPI_COMM_WORLD,&myrank);
    
-   //find the connected component of vertex i+1
-   findConComp(i,graph,nvertices);
-   
    // Branch off to master or slave function
    // Master has ID == 0, the slaves are then in order 1,2,3,...
    
@@ -65,10 +60,7 @@ int main(int argc, char* argv[])
    {
       slave(myrank);
    }
-   
-   //free memory
-   freegraph(graph,nvertices);
-   
+      
    // Finalize the MPI session
    MPI_Finalize();
    
@@ -77,24 +69,23 @@ int main(int argc, char* argv[])
 
 void master()
 {
-   int ntasks;		// the total number of slaves
-   int jobsRunning;	// how many slaves we have working
-   int work[1];		// information to send to the slaves
-   int workresults[2]; // info received from the slaves
-   MPI_Status status;	// MPI information
-
    // Read in the data
    char graphfile[] = "data.txt";
    int nvertices = -1;
    int** graph = readgraph(graphfile,nvertices);
    
+   int ntasks;		                        // the total number of slaves
+   int jobsRunning;	                        // how many slaves we have working
+   int work[1];		                        // information to send to the slaves
+   int** workresults = new int*[nvertices]; // info received from the slaves
+   MPI_Status status;	                    // MPI information
+
    // Find out how many slaves there are
    MPI_Comm_size(MPI_COMM_WORLD, &ntasks);
 
    fprintf(stdout, "Total Number of processors = %d\n",ntasks);
 
-   // Loop through the vertices and compute the connected components in
-   // parallel
+   // Loop through the vertices and compute the connected components in parallel
    jobsRunning = 1;
 
    for(my_vertex=0; my_vertex<nvertices; my_vertex++)
@@ -120,20 +111,14 @@ void master()
       }
       else // all the processors are in use! Wait, receive, send.
       {
-         MPI_Recv(workresults,	         // where to store the results
+         MPI_Recv(workresults[my_vertex],// where to store the results
                   nvertices,		     // the size of the vector
                   MPI_DOUBLE,	         // the type of the vector
                   MPI_ANY_SOURCE,
                   MPI_ANY_TAG, 
                   MPI_COMM_WORLD,
                   &status);              // lets us know which processor returned these results
-
-         printf("Master has received the result of work request [%d] from slave [%d]\n",
-                (int) workresults[0],status.MPI_SOURCE);
  
-         // Print out the results
-         fprintf(fout, "%d\t%f\n", (int)workresults[0]+1, workresults[1]);
-
          printf("Master sends out work request [%d] to slave [%d]\n",
                 work[0],status.MPI_SOURCE);
 
@@ -156,8 +141,8 @@ void master()
    // loop over all the slaves
    for(rank=1; rank<jobsRunning; rank++)
    {
-      MPI_Recv(workresults,
-               2,
+      MPI_Recv(workresults[my_vertex],
+               nvertices,
                MPI_DOUBLE,
                MPI_ANY_SOURCE,	// whoever is ready to report back
                MPI_ANY_TAG,
@@ -165,10 +150,7 @@ void master()
                &status);
 
        printf("Master has received the result of work request [%d]\n", (int) workresults[0]);
- 
-      //save the results received
-      fprintf(fout, "%d\t%f\n", (int)workresults[0]+1, workresults[1]);
-   }
+    }
 
    printf("Tell the slave to die\n");
 
@@ -186,20 +168,55 @@ void master()
 
    printf("got to the end of Master code\n");
    
+   //initialize boolean list to 0
+   bool* seen_vertex_already = new bool[nvertices];
+   for(int v = 0; v<nvertices; v++)
+   {
+      seen_vertex_already[v] = 0;
+   }
+   
    //print the unique connected components
-   eiuevgeoahv
+   for(int v = 0; v<nvertices; v++)
+   {
+      printf("Component of vertex [%d] contains ", v);
+      for(int i=1; i<=workresults[v][0]; i++)
+      {
+         if(seen_vertex_already[workresults[v][i]])
+         {
+            printf("duplicates.");
+            break;
+         }
+         else
+         {
+            printf(" [%d] ", (int) workresults[v][i]);
+         }
+         printf("\n");
+      }
+   }
    
    //free memory
+   delete seen_vertex_already;
+   delete workresults;
+   delete work;
    freegraph(graph,nvertices);
-
+   for(int v = 0; v<nvertices; v++)
+   {
+      delete workresults[v];
+   }
+   
    // return to the main function
    return;
 }
 
 void slave(int slavename)
 {
-   int work[1];			               // the inputs from the master
-   double workresults[nvertices];	   // the outputs for the master
+   // Read in the data
+   char graphfile[] = "data.txt";
+   int nvertices = -1;
+   int** graph = readgraph(graphfile,nvertices);
+
+   int work[1]; 		               // the inputs from the master
+   int** workresults;                  // the outputs for the master
    MPI_Status status;		           // for MPI communication
 
    // the slave listens for instructions...
@@ -207,11 +224,11 @@ void slave(int slavename)
    while(notDone)
    {
       printf("Slave %d is waiting\n",slavename);
-      MPI_Recv(&work,		// the inputs from the master
-               1,		       // the size of the inputs
-               MPI_INT,		   // the type of the inputs
-               0,		   // from the MASTER node (rank=0)
-               MPI_ANY_TAG,	// any type of order is fine
+      MPI_Recv(&work,		     // the inputs from the master
+               1,		         // the size of the inputs
+               MPI_INT,		     // the type of the inputs
+               0,		         // from the MASTER node (rank=0)
+               MPI_ANY_TAG,	     // any type of order is fine
                MPI_COMM_WORLD,
                &status);
       printf("Slave %d just received smth\n",slavename);
@@ -221,9 +238,8 @@ void slave(int slavename)
       {
          case GETR2:
             // Get conn component
-
-            printf("Slave %d has received work request [%d]\n", slavename,work[0]);
-            workresults = avleuabe; 
+            printf("Slave %d has received vertex [%d]\n", slavename,work[0]);
+            workresults = findConComp(work[0],int** graph,int nvertices);
 
             // Send the results
             MPI_Send(&workresults,
@@ -248,91 +264,10 @@ void slave(int slavename)
             return;
       }
    }
-
-   // No memory to clean up, so just return to the main function
+   freegraph(graph,nvertices);
    return;
 }
 
-// Data must have zero mean and unit variance
-// This is only for 1 variable regressions without an intercept
-double GetR2(int v)
-{
-   int	i;
-   double tmp;
-
-   tmp = 0.0;
-   for(i=0; i<nobservations; i++)
-   {
-      tmp += (X[i][v]*Y[i]);
-   }
-   tmp = tmp*tmp / ((double)nobservations - 1.0);
-
-   return(tmp / ssy);
-}
-
-
-void NormStand()
-{
-   int i, j;
-   double tmp;
-
-   for(j=0; j<nvariables; j++)
-   {
-      tmp = 0.0;
-      for(i=0; i<nobservations; i++)
-      {
-         tmp += X[i][j];
-      }
-      for(i=0; i<nobservations; i++)
-      {
-         X[i][j] -= tmp/((double)nobservations);
-      }
-   }
-
-   tmp = 0.0;
-   for(i=0; i<nobservations; i++)
-   {
-      tmp += Y[i];
-   }
-   for(i=0; i<nobservations; i++) Y[i] -= tmp/((double)nobservations);
-
-   // Now make the data have unit sample variance
-   for(j=0; j<nvariables; j++)
-   {
-      tmp = 0.0;
-      for(i=0; i<nobservations; i++)
-      {
-         tmp += X[i][j]*X[i][j];
-      }
-
-      tmp = sqrt(tmp / ((double)nobservations-1.0));
-
-      for(i=0; i<nobservations; i++)
-      {
-         X[i][j] = X[i][j]/tmp;
-      }
-   }   
-
-   // Do the same for Y
-   tmp = 0.0;
-   for(i=0; i<nobservations; i++)
-   {
-      tmp += Y[i]*Y[i];
-   }
-   tmp = sqrt( tmp / ((double)nobservations - 1.0));
-
-   for(i=0; i<nobservations; i++)
-   {
-      Y[i] = Y[i]/tmp;
-   }
-
-   return;
-}
-
-#include "graph.h"
-#include "iostream"
-using namespace std;
-//Eric's contribution. Prints vertices in the connected component of myvertex.
 int* findConComp(int myvertex,int** graph,int nvertices)
 {
    //vfwyntctn means "vertices for which you need to check the neighbors."
@@ -345,6 +280,7 @@ int* findConComp(int myvertex,int** graph,int nvertices)
    
    //in_cc is a vector whose [v] element will say whether v is in myvertex's connected component.
    bool* in_cc = new bool[nvertices];
+   
    //Initialize to have zeros except at myvertex.
    for(int v=0; v<nvertices;v++)
    {
@@ -353,14 +289,12 @@ int* findConComp(int myvertex,int** graph,int nvertices)
    in_cc[myvertex] = 1;
    
    int vwnabc = 0;
-   cout << endl << "The vertex " << myvertex << " (indexing from 0) has this connected component :" << endl;
    //For all vertices whose neighbors need to be checked
    for(int i=0; i<vfwyntctn_size;i++)
    {
       //"vwnabc" is "vertex whose neighbors are being checked"
       //It is a vertex already known to be in the CC of myvertex.
       vwnabc = vfwyntctn[i];
-      cout << vwnabc << "  ";
 
       //Check the potential neighbors.
       for(int maybe_neighbor=0; maybe_neighbor<nvertices; maybe_neighbor++)
@@ -377,7 +311,15 @@ int* findConComp(int myvertex,int** graph,int nvertices)
       }
    }
    cout << endl ;
-   return in_cc;
+   int* output = new int[vfwyntctn_size+1];
+   output[0] = vfwyntctn_size;
+   for(int i=0; i<vfwyntctn_size; i++)
+   {
+      output[i+1] = vfwyntctn[i];
+   }
+   delete[] vfwyntctn;
+   delete[] in_cc;
+   return output;
 }
 
 
