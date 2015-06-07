@@ -88,10 +88,10 @@ void master()
    // Loop through the vertices and compute the connected components in parallel
    jobsRunning = 1;
 
-   for(int my_vertex=0; my_vertex<nvertices; my_vertex++)
+   for(int v=0; v<nvertices; v++)
    {
       // This will tell the slave which variable to work on
-      work[0] = my_vertex;
+      work[0] = v;
 
       if(jobsRunning < ntasks) // Do we have an available processor?
       {
@@ -111,7 +111,7 @@ void master()
       }
       else // all the processors are in use! Wait, receive, send.
       {
-         MPI_Recv(workresults[my_vertex],// where to store the results
+         MPI_Recv(workresults[v],// where to store the results
                   nvertices,		     // the size of the vector
                   MPI_DOUBLE,	         // the type of the vector
                   MPI_ANY_SOURCE,
