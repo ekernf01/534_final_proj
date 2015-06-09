@@ -140,7 +140,10 @@ void master()
          all_results_lens[v] = workresults[0];
          printf("Initializing array of size [%d] \n", all_results_lens[v]);
          temp_len = all_results_lens[v];
+         
          all_results[v] = new int[temp_len];
+         printf("finished initializing array of size [%d] \n", all_results_lens[v]);
+         
          for(int i=0; i<all_results_lens[v]; i++)
          {
             printf("Accessing element [%d] \n", i);
