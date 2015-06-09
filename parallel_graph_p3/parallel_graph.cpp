@@ -54,12 +54,12 @@ int main(int argc, char* argv[])
    if(myrank==0)
    {
       master();
-      printf("In main, a master process finished.\n");
+      //printf("In main, a master process finished.\n");
    }
    else
    {
       slave(myrank);
-      printf("In main, a slave process finished.\n");
+      //printf("In main, a slave process finished.\n");
    }
    
    // Finalize the MPI session
@@ -223,7 +223,7 @@ void master()
    }
    delete all_results;
    freegraph(graph,nvertices);
-   printf("master has finished.");
+   //printf("master has finished.");
    return;
 }
 
@@ -267,7 +267,7 @@ void slave(int slavename)
                      0,		// doesn't need a TAG
                      MPI_COMM_WORLD);
 
-            printf("Slave %d finished processing work request [%d]\n",
+            //printf("Slave %d finished processing work request [%d]\n",
                    slavename,work[0]);
 
             break;
@@ -275,7 +275,7 @@ void slave(int slavename)
          case DIETAG:
             freegraph(graph,nvertices);
             delete workresults;
-            printf("Slave %d was told to die\n",slavename);
+            //printf("Slave %d was told to die\n",slavename);
             return;
 
          default:
