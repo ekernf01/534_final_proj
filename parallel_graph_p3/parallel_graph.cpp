@@ -132,9 +132,8 @@ void master()
          
          //copy the results
          int v = workresults[1];
-         printf("Master just received results on vertex [%d] \n", v);
+         printf("135: Copying results on vertex [%d] \n", v);
          all_results_lens[v] = workresults[0];
-         
          for(int i=0; i<all_results_lens[v]; i++)
          {
             all_results[v][i] = workresults[i+2]; 
@@ -172,16 +171,12 @@ void master()
       
       //copy the results
       int v = workresults[1];
-      printf("Copying results on vertex [%d] \n", v);
-
-      all_results[v] = new int[all_results_lens[v]];
+      printf("174: Copying results on vertex [%d] \n", v);
       all_results_lens[v] = workresults[0];
       for(int i=0; i<all_results_lens[v]; i++)
       {
          all_results[v][i] = workresults[i+2]; 
       }
-      printf("Done copying results on vertex [%d] \n", v);
-
     }
 
    printf("Shutting down slaves.\n");
