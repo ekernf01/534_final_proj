@@ -127,6 +127,7 @@ void master()
          
          //copy the results
          int v = workresults[1];
+         printf("Just received results on vertex [%d] \n", v);
          printf("Copying results on vertex [%d] \n", v);
          all_results_lens[v] = workresults[0];
          all_results[v] = new int[all_results_lens[v]];
