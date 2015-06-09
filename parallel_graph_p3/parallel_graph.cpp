@@ -258,7 +258,6 @@ void slave(int slavename)
       switch(status.MPI_TAG)
       {
          case GETR2:
-            return;
             // Get conn component
             printf("Slave %d has received vertex [%d]\n", slavename,work[0]);
             workresults = findConComp(work[0], graph, nvertices);
