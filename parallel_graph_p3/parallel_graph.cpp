@@ -214,17 +214,17 @@ void master()
    }
    
    //free memory
-   printf("master freeing lists ca line 227");
+   printf("master freeing lists ca line 217");
    delete seen_vertex_already;
+   printf("master freeing lists ca line 219");
    delete workresults;
-   printf("master freeing graph ca line 230");
-   freegraph(graph,nvertices);
+   printf("master freeing graph ca line 221");
    for(int v = 0; v<nvertices; v++)
    {
       delete all_results[v];
    }
    delete all_results;
-   
+   freegraph(graph,nvertices);
    // return to the main function
    return;
 }
