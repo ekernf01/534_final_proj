@@ -214,7 +214,7 @@ void master()
          printf("\n");
       }
    }
-   
+   //
    //free memory
    delete seen_vertex_already;
    for(int v = 0; v<nvertices; v++)
