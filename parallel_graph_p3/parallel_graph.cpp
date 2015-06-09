@@ -130,6 +130,7 @@ void master()
          printf("Just received results on vertex [%d] \n", v);
          printf("Copying results on vertex [%d] \n", v);
          all_results_lens[v] = workresults[0];
+         printf("Initializing array of size [%d] \n", all_results_lens[v]);
          all_results[v] = new int[all_results_lens[v]];
          for(int i=0; i<all_results_lens[v]; i++)
          {
