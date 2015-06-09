@@ -278,7 +278,7 @@ void slave(int slavename)
 
          case DIETAG:
             freegraph(graph,nvertices);
-            delete workresults
+            delete workresults;
             printf("Slave %d was told to die\n",slavename);
             return;
 
