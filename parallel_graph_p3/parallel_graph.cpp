@@ -224,8 +224,6 @@ void master()
    delete all_results;
    printf("master freeing graph ca line 225\n");
    //freegraph(graph,nvertices);
-   printf("master freeing graph ca line 225\n");
-
    printf("master has finished.");
    return;
 }
