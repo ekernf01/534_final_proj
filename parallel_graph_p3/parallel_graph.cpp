@@ -54,12 +54,12 @@ int main(int argc, char* argv[])
    if(myrank==0)
    {
       master();
-      printf("In main, a master process finished.");
+      printf("In main, a master process finished.\n");
    }
    else
    {
       slave(myrank);
-      printf("In main, a slave process finished.");
+      printf("In main, a slave process finished.\n");
    }
    
    // Finalize the MPI session
@@ -216,15 +216,12 @@ void master()
    }
    
    //free memory
-   printf("master freeing lists ca line 217\n");
    delete seen_vertex_already;
-   printf("master freeing lists ca line 219\n");
    for(int v = 0; v<nvertices; v++)
    {
       delete all_results[v];
    }
    delete all_results;
-   printf("master freeing graph ca line 225\n");
    freegraph(graph,nvertices);
    printf("master has finished.");
    return;
