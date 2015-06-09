@@ -126,7 +126,7 @@ void master()
       {
          MPI_Recv(workresults,           // where to store the results
                   nvertices+2,		     //buffer length
-                  MPI_DOUBLE,	         // the type of the vector
+                  MPI_INT,	         // the type of the vector
                   MPI_ANY_SOURCE,
                   MPI_ANY_TAG, 
                   MPI_COMM_WORLD,
@@ -165,7 +165,7 @@ void master()
    {
       MPI_Recv(workresults,
                nvertices+2,
-               MPI_DOUBLE,
+               MPI_INT,
                MPI_ANY_SOURCE,	// whoever is ready to report back
                MPI_ANY_TAG,
                MPI_COMM_WORLD,
@@ -265,7 +265,7 @@ void slave(int slavename)
             // Send the results
             MPI_Send(workresults,
                      nvertices+2,
-                     MPI_DOUBLE,
+                     MPI_INT,
                      0,		// send it to the master
                      0,		// doesn't need a TAG
                      MPI_COMM_WORLD);
