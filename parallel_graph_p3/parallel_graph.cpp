@@ -196,7 +196,7 @@ void master()
    //print the unique connected components
    for(int v = 0; v<nvertices; v++)
    {
-      printf("Component of vertex [%d] contains ", v);
+      printf("Component of vertex [%d] contains: \n", v);
       for(int i=0; i<all_results_lens[v]; i++)
       {
          if(seen_vertex_already[all_results[v][i]])
@@ -207,6 +207,7 @@ void master()
          else
          {
             printf(" [%d] ", (int) all_results[v][i]);
+            seen_vertex_already[all_results[v][i]] = 1;
          }
          printf("\n");
       }
