@@ -83,7 +83,8 @@ void master()
    int* workresults = new int[nvertices+2];
    for(int i=0; i< nvertices+2; i++){workresults[i] = -1;}
    //all_results[v] stores the cc of vertex v
-   int** all_results = new int*[nvertices]; 
+   int** all_results = new int*[nvertices];         
+   for(int i=0; i<nvertices; i++){all_results[i] = new int[nvertices];} 
    //all_results_lens[v] stores the size of the cc of vertex v
    int* all_results_lens = new int[nvertices];
 
@@ -94,7 +95,6 @@ void master()
 
    // Loop through the vertices and compute the connected components in parallel
    jobsRunning = 1;
-   int temp_len = -1;
    for(int v=0; v<nvertices; v++)
    {
       // This will tell the slave which variable to work on
@@ -138,11 +138,6 @@ void master()
          printf("Master just received results on vertex [%d] \n", v);
          printf("Master copying results on vertex [%d] \n", v);
          all_results_lens[v] = workresults[0];
-         printf("Initializing array of size [%d] \n", all_results_lens[v]);
-         temp_len = all_results_lens[v];
-         
-         all_results[v] = new int[temp_len];
-         printf("finished initializing array of size [%d] \n", all_results_lens[v]);
          
          for(int i=0; i<all_results_lens[v]; i++)
          {
