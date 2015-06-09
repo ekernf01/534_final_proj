@@ -126,17 +126,17 @@ void master()
                   MPI_COMM_WORLD,
                   &status);              // lets us know which processor returned these results
          
-         for(int i=0; i<nvertices+2; i++)
-         {
-            printf("Spitting out workresults[%d] :", i);
-            printf("[%d] \n", workresults[i]);
-         }
+         //for(int i=0; i<nvertices+2; i++)
+         //{
+         //   printf("Spitting out workresults[%d] :", i);
+         //   printf("[%d] \n", workresults[i]);
+         //}
          printf("Master just received results on vertex [%d] \n", v);
          
          //copy the results
          int v = workresults[1];
          printf("Master just received results on vertex [%d] \n", v);
-         printf("Master copying results on vertex [%d] \n", v);
+         //printf("Master copying results on vertex [%d] \n", v);
          all_results_lens[v] = workresults[0];
          
          for(int i=0; i<all_results_lens[v]; i++)
@@ -144,7 +144,7 @@ void master()
             printf("Accessing element [%d] \n", i);
             all_results[v][i] = workresults[i+2]; 
          }
-         printf("Done copying results on vertex [%d] \n", v);
+         //printf("Done copying results on vertex [%d] \n", v);
 
          printf("Master sends out work request [%d] to slave [%d]\n",
                 work[0],status.MPI_SOURCE);
@@ -205,10 +205,10 @@ void master()
 
    printf("got to the end of Master code\n");
    
-   printf("About to print final results. \n");
 
    //initialize boolean list to 0
    bool* seen_vertex_already = new bool[nvertices];
+   printf("About to print final results. \n");
    for(int v = 0; v<nvertices; v++)
    {
       seen_vertex_already[v] = 0;
