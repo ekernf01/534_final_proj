@@ -223,7 +223,7 @@ void master()
    }
    delete all_results;
    printf("master freeing graph ca line 225\n");
-   //freegraph(graph,nvertices);
+   freegraph(graph,nvertices);
    printf("master has finished.");
    return;
 }
@@ -275,8 +275,6 @@ void slave(int slavename)
 
          case DIETAG:
             printf("Slave %d was told to die\n",slavename);
-            printf("slave [%d] freeing graph ca line 296",slavename);
-            freegraph(graph,nvertices);
             return;
 
          default:
@@ -285,8 +283,6 @@ void slave(int slavename)
             return;
       }
    }
-   printf("slave [%d] freeing graph ca line 296",slavename);
-   freegraph(graph,nvertices);
    return;
 }
 
