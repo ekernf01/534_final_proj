@@ -130,25 +130,15 @@ void master()
                   MPI_COMM_WORLD,
                   &status);              // lets us know which processor returned these results
          
-         //for(int i=0; i<nvertices+2; i++)
-         //{
-         //   printf("Spitting out workresults[%d] :", i);
-         //   printf("[%d] \n", workresults[i]);
-         //}
-         printf("Master just received results on vertex [%d] \n", v);
-         
          //copy the results
          int v = workresults[1];
          printf("Master just received results on vertex [%d] \n", v);
-         //printf("Master copying results on vertex [%d] \n", v);
          all_results_lens[v] = workresults[0];
          
          for(int i=0; i<all_results_lens[v]; i++)
          {
-            //printf("Accessing element [%d] \n", i);
             all_results[v][i] = workresults[i+2]; 
          }
-         //printf("Done copying results on vertex [%d] \n", v);
 
          printf("Master sends out work request [%d] to slave [%d]\n",
                 work[0],status.MPI_SOURCE);
