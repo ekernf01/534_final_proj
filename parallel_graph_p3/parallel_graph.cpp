@@ -276,6 +276,7 @@ void slave(int slavename)
             break;
 
          case DIETAG:
+            freegraph(graph,nvertices);
             printf("Slave %d was told to die\n",slavename);
             return;
 
@@ -285,6 +286,7 @@ void slave(int slavename)
             return;
       }
    }
+   freegraph(graph,nvertices);
    return;
 }
 
