@@ -118,7 +118,7 @@ void master()
       else // all the processors are in use! Wait, receive, send.
       {
          MPI_Recv(workresults,           // where to store the results
-                  nvertices,		     //buffer length
+                  nvertices+2,		     //buffer length
                   MPI_DOUBLE,	         // the type of the vector
                   MPI_ANY_SOURCE,
                   MPI_ANY_TAG, 
@@ -162,7 +162,7 @@ void master()
    for(int rank=1; rank<jobsRunning; rank++)
    {
       MPI_Recv(workresults,
-               nvertices,
+               nvertices+2,
                MPI_DOUBLE,
                MPI_ANY_SOURCE,	// whoever is ready to report back
                MPI_ANY_TAG,
@@ -276,7 +276,7 @@ void slave(int slavename)
 
             // Send the results
             MPI_Send(workresults,
-                     nvertices,
+                     nvertices+2,
                      MPI_DOUBLE,
                      0,		// send it to the master
                      0,		// doesn't need a TAG
