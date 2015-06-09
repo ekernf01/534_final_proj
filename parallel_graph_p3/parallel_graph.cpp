@@ -134,6 +134,7 @@ void master()
          all_results[v] = new int[all_results_lens[v]];
          for(int i=0; i<all_results_lens[v]; i++)
          {
+            printf("Accessing element [%d] \n", i);
             all_results[v][i] = workresults[i+2]; 
          }
          printf("Done copying results on vertex [%d] \n", v);
