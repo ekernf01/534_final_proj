@@ -88,7 +88,7 @@ void master()
    //all_results_lens[v] stores the size of the cc of vertex v
    int* all_results_lens = new int[nvertices];
    //seen_vertex_already keeps track of the obvious to help avoid duplicate print-outs at the end.
-   bool* seen_vertex_already = new bool[nvertices]
+   bool* seen_vertex_already = new bool[nvertices];
    for(int v = 0; v<nvertices; v++){seen_vertex_already[v] = 0;}
 
 
