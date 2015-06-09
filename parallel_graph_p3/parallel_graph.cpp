@@ -87,6 +87,14 @@ void master()
    for(int i=0; i<nvertices; i++){all_results[i] = new int[nvertices];} 
    //all_results_lens[v] stores the size of the cc of vertex v
    int* all_results_lens = new int[nvertices];
+   //seen_vertex_already keeps track of the obvious to help avoid duplicate print-outs at the end.
+   bool* seen_vertex_already = malloc(hhhh);
+   printf("About to print final results. \n");
+   for(int v = 0; v<nvertices; v++)
+   {
+      seen_vertex_already[v] = 0;
+   }
+
 
    // Find out how many slaves there are
    MPI_Comm_size(MPI_COMM_WORLD, &ntasks);
@@ -203,16 +211,7 @@ void master()
                MPI_COMM_WORLD);
    }
 
-   printf("got to the end of Master code\n");
-   
-
-   //initialize boolean list to 0
-   bool* seen_vertex_already = new bool[nvertices];
    printf("About to print final results. \n");
-   for(int v = 0; v<nvertices; v++)
-   {
-      seen_vertex_already[v] = 0;
-   }
    
    //print the unique connected components
    for(int v = 0; v<nvertices; v++)
