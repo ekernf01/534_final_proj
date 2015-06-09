@@ -201,7 +201,7 @@ void master()
       {
          if(seen_vertex_already[all_results[v][i]])
          {
-            printf("duplicates. ");
+            printf("duplicates. \n");
             break;
          }
          else
@@ -214,11 +214,9 @@ void master()
    }
    
    //free memory
-   printf("master freeing lists ca line 217");
+   printf("master freeing lists ca line 217\n");
    delete seen_vertex_already;
-   printf("master freeing lists ca line 219");
-   delete workresults;
-   printf("master freeing graph ca line 221");
+   printf("master freeing graph ca line 219\n");
    for(int v = 0; v<nvertices; v++)
    {
       delete all_results[v];
