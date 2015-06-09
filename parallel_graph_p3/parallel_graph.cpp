@@ -241,7 +241,7 @@ void slave(int slavename)
    int notDone = 1;
    while(notDone)
    {
-      printf("Slave %d is waiting\n",slavename);
+      //printf("Slave %d is waiting\n",slavename);
       MPI_Recv(&work,		     // the inputs from the master
                1,		         // the size of the inputs
                MPI_INT,		     // the type of the inputs
@@ -249,14 +249,14 @@ void slave(int slavename)
                MPI_ANY_TAG,	     // any type of order is fine
                MPI_COMM_WORLD,
                &status);
-      printf("Slave %d just received smth\n",slavename);
+      //printf("Slave %d just received smth\n",slavename);
 
       // switch on the type of work request
       switch(status.MPI_TAG)
       {
          case GETR2:
             // Get conn component
-            printf("Slave %d has received vertex [%d]\n", slavename,work[0]);
+            //printf("Slave %d has received vertex [%d]\n", slavename,work[0]);
             workresults = findConComp(work[0], graph, nvertices);
 
             // Send the results
@@ -267,8 +267,7 @@ void slave(int slavename)
                      0,		// doesn't need a TAG
                      MPI_COMM_WORLD);
 
-            //printf("Slave %d finished processing work request [%d]\n",
-                   slavename,work[0]);
+            //printf("Slave %d finished processing work request [%d]\n", slavename,work[0]);
 
             break;
 
