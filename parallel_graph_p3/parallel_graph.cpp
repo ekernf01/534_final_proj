@@ -223,7 +223,8 @@ void master()
    }
    delete all_results;
    freegraph(graph,nvertices);
-   // return to the main function
+   
+   printf("master has finished.");
    return;
 }
 
