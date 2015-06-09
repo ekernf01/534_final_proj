@@ -187,7 +187,7 @@ void master()
    {
       printf("Master is killing slave [%d]\n",rank);
       MPI_Send(0,
-               1,
+               0,
                MPI_INT,
                rank,		// which node to kill
                DIETAG,		// tell it to die
