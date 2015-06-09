@@ -224,9 +224,10 @@ void master()
    }
    
    //free memory
+   printf("master [%d] freeing lists ca line 227",slavename);
    delete seen_vertex_already;
    delete workresults;
- //  delete work;
+   printf("master [%d] freeing graph ca line 230",slavename);
    freegraph(graph,nvertices);
    for(int v = 0; v<nvertices; v++)
    {
@@ -293,6 +294,7 @@ void slave(int slavename)
             return;
       }
    }
+   printf("slave [%d] freeing graph ca line 296",slavename);
    freegraph(graph,nvertices);
    return;
 }
@@ -341,7 +343,7 @@ int* findConComp(int myvertex,int** graph,int nvertices)
          }
       }
    }
-   cout << endl ;
+   
    int* workresults = new int[vfwyntctn_size+2];
    workresults[0] = vfwyntctn_size;
    workresults[1] = myvertex;
