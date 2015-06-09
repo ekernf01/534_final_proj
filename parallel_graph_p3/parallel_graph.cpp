@@ -203,7 +203,7 @@ void master()
       {
          if(seen_vertex_already[all_results[v][i]])
          {
-            printf("duplicates. \n");
+            printf("duplicates.");
             break;
          }
          else
