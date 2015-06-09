@@ -211,8 +211,8 @@ void master()
             printf(" [%d] ", (int) all_results[v][i]);
             seen_vertex_already[all_results[v][i]] = 1;
          }
-         printf("\n");
       }
+      printf("\n");
    }
    //
    //free memory
