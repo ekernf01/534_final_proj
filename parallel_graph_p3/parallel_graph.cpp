@@ -285,7 +285,7 @@ void slave(int slavename)
       }
    }
    printf("slave [%d] freeing graph ca line 296",slavename);
-   freegraph(graph,nvertices);
+   //freegraph(graph,nvertices);
    return;
 }
 
