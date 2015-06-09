@@ -145,7 +145,7 @@ void master()
          
          for(int i=0; i<all_results_lens[v]; i++)
          {
-            printf("Accessing element [%d] \n", i);
+            //printf("Accessing element [%d] \n", i);
             all_results[v][i] = workresults[i+2]; 
          }
          //printf("Done copying results on vertex [%d] \n", v);
@@ -208,7 +208,6 @@ void master()
    }
 
    printf("About to print final results. \n");
-   
    //print the unique connected components
    for(int v = 0; v<nvertices; v++)
    {
