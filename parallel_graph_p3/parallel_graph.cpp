@@ -54,12 +54,14 @@ int main(int argc, char* argv[])
    if(myrank==0)
    {
       master();
+      printf("In main, a master process finished.")
    }
    else
    {
       slave(myrank);
+      printf("In main, a slave process finished.")
    }
-      
+   
    // Finalize the MPI session
    MPI_Finalize();
    
