@@ -127,8 +127,8 @@ void master()
          
          for(int i=0; i<nvertices+2; i++)
          {
-            printf("Spitting out workresults[%d]", i);
-            printf("[%d]", workresults[i]);
+            printf("Spitting out workresults[%d] :", i);
+            printf("[%d] \n", workresults[i]);
          }
          printf("Master just received results on vertex [%d] \n", v);
          
